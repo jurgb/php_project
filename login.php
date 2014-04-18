@@ -1,5 +1,5 @@
 <?php  
-
+/*
 	function canLogin($p_email, $p_password){
 		if($p_email == "IMD" && $p_password == "wachtwoord"){
 			return true;
@@ -26,7 +26,28 @@
 			$alert = "Emailadres of wachtwoord is verkeerd";
 		}
 	}
-
+*/
+	session_start();
+	include_once('class/user.class.php');
+	$u = new user();
+	
+	if(isset($_SESSION['loggedin']))
+	{
+		header('Location: dashboard.php');
+	}
+	else
+	{
+		if (!empty($_POST)) 
+		{	
+			try 
+			{
+				$u->login($_POST['email'],$_POST['password']);	
+			} catch (Exception $e) {
+				$alert= $e->getMessage();
+			}
+			
+		}
+	}
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -49,21 +70,24 @@
 		<h1>Inloggen</h1>
 
 	</div><!--end title-->
+
 	<div id="formOuter">
+
 		<div id="formInner">
 			<form action="" method="post">
-				<label for="email">Email</label>
-				<input type="text" id="email" name="email">
-
-				<label for="password">Wachtwoord</label>
-				<input type="password" id="password" name="password">
-
 				<?php 
 
 				if(isset($alert)){
 					echo "<div id='alert'>" . $alert . "</div>";
 				}
 				 ?>
+				<label for="email">Email</label>
+				<input type="text" id="email" name="email">
+
+				<label for="password">Wachtwoord</label>
+				<input type="password" id="password" name="password">
+
+				
 
 				<button type="submit" class="shadow">Inloggen</button>
 			</form>

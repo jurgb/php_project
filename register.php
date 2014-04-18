@@ -1,4 +1,39 @@
-<!doctype html>
+<?php
+	include_once("class/User.class.php");
+	$u = new User();
+
+	if(!empty($_POST))
+	{
+		if ($_POST['password'] == $_POST['repeatpassword']) {
+			try {
+				$u->Name = $_POST['name'];
+				$u->Firstname = $_POST['firstname'];
+				$u->Email = $_POST['email'];
+				$u->Password = $_POST['password'];
+				$u->Restaurant = $_POST['namerestaurant'];
+				$u->Adres = $_POST['address'];
+				$u->Postcode = $_POST['postalcode'];
+				$u->Save();
+				/*
+				session_start();
+				$_SESSION['name'] = $u->Name;
+				$_SESSION['email'] = $u->Email;
+				$_SESSION['loggedin'] = true;
+				header('Location: createpost.php');
+				*/
+				
+			} catch (Exception $e) {
+				$alert= $e->getMessage();
+			}
+
+		} else
+		{
+			$alert = "passwords don't match!";
+		}
+	}
+
+
+?><!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -23,6 +58,13 @@
 	<div id="formOuter">
 		<div id="formInner">
 			<form action="" method="post">
+
+				<?php 
+					if(isset($alert)){
+						echo "<div id='alert'>" . $alert . "</div>";
+					}
+				?>
+
 				<label for="name">Naam</label>
 				<input type="text" id="name" name="name">
 
@@ -47,7 +89,7 @@
 				<label for="postalcode">Postcode</label>
 				<input type="text" id="postalcode" name="postalcode">
 
-				<button type="submit" class="shadow">Registreren</button>
+				<button type="submit" id="btnSubmit" name="btnSubmit" class="shadow">Registreren</button>
 			</form>
 		</div><!--end formInner-->
 	</div><!--end formOuter-->
