@@ -84,12 +84,11 @@ Developers: Jurgen barbier
 		{
 			//save user to database	
 			$db = new Db();
-			$sql = "INSERT INTO tblusers (naam, voornaam, email, wachtwoord, restaurantnaam, adres, postcode)
+			$sql = "INSERT INTO tbl_users (naam, voornaam, email, wachtwoord, adres, postcode)
 			VALUES ('".$db->conn->real_escape_string($this->m_sName)."',
 					'".$db->conn->real_escape_string($this->m_sFirstname)."',
 					'".$db->conn->real_escape_string($this->m_sEmail)."',
 					'".$db->conn->real_escape_string($this->m_sPassword)."',
-					'".$db->conn->real_escape_string($this->m_sRestaurant)."',
 					'".$db->conn->real_escape_string($this->m_sAdres)."',
 					'".$db->conn->real_escape_string($this->m_iPostcode)."'
 			)";
@@ -101,7 +100,7 @@ Developers: Jurgen barbier
 		{
 			$db = new Db();
 			$salt = '(#@!myrestosalt!@#)';
-			$sql = "SELECT * from tblusers WHERE email = '".$db->conn->real_escape_string($p_sUsername)."' AND wachtwoord = '".$db->conn->real_escape_string(md5($p_sPassword.$salt))."';";
+			$sql = "SELECT * from tbl_users WHERE email = '".$db->conn->real_escape_string($p_sUsername)."' AND wachtwoord = '".$db->conn->real_escape_string(md5($p_sPassword.$salt))."';";
 			
 			$result = $db->conn->query($sql);
 			

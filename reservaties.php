@@ -1,9 +1,31 @@
 <?php
+include_once('class/reservaties.class.php');
 	session_start();
 
 	if(!isset($_SESSION['loggedin']))
 	{
 		header('Location: login.php');
+	}else{
+
+		try {
+			if (!empty($_POST)) 
+			{	
+				$res = new reservatie();
+
+				$res->Name = $_POST['name'];
+				$res->Table = $_POST['tafel'];
+				$res->Date = $_POST['datum'];
+				$res->Uur = $_POST['uur'];
+				$res->Personen = $_POST['personen'];
+
+				$res->save();
+
+			}
+			
+		} catch (Exception $e) {
+
+				$alert= $e->getMessage();
+		}
 	}
 	
 ?><!doctype html>
@@ -39,11 +61,11 @@
 				
 				<tr id="inputs_toevoegen">
 					<form action="" method="post"></form>
-					<td><input type="text"></td>
-					<td><input type="text"></td>
-					<td><input type="text"></td>
-					<td><input type="text"></td>
-					<td><input type="text"></td>
+					<td><input type="text" name="name"></td>
+					<td><input type="text" name="personen"></td>
+					<td><input type="text" name="datum" placeholder="01/01/2014"></td>
+					<td><input type="text" name="uur"></td>
+					<td><input type="text" name="tafel"></td>
 					<th class="nopadding white"><button type="submit" class="save"></button></th>
 				</tr>
 
