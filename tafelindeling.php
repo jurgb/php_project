@@ -1,4 +1,29 @@
-<!doctype html>
+<?php 
+
+session_start();
+include_once("class/tafelindeling.class.php");
+
+		if(!empty($_POST))
+		{
+			if(isset($_POST['restaurant']))
+			{
+
+			$_SESSION['restaurant_id'] = $_POST['restaurant'];
+
+			} else
+			{
+		
+				$tafel = new Tafelindeling();
+
+				$tafel->Tafelnr = $_POST['tafels'];
+				$tafel->Aantalpersonen = $_POST['personen'];
+		
+				$tafel->Save();
+				
+			}	
+		}
+
+?><!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -7,6 +32,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/screen_backend.css">
+
+	<script src="js/jquery.min.js"></script>
 </head>
 <body>
 
@@ -14,7 +41,7 @@
 
 	<section id="content">
 		<h1>Tafelindeling</h1>
-
+		
 		<table>
 			<tbody>
 				<tr>
@@ -27,40 +54,32 @@
 				</tr>
 				
 				<tr id="inputs_toevoegen">
-					<form action="" method="post"></form>
-					<td><input type="text"></td>
-					<td><input type="text"></td>
+					<form action="" method="post">
+					<td><input type="text" name="tafels"></td>
+					<td><input type="text"  name="personen"></td>
 					<th class="nopadding white"><button type="submit" class="save"></button></th>
+					</form>
 				</tr>
 
-				<form action="" method="post">
+				<?php
+
+				$tafel = new Tafelindeling();
+				$all = $tafel->getAll();
+				foreach($all as $a) { ?>
 					<tr>
-						<td>1</td>
-						<td>4</td>
-						<th class="nopadding white">
-							<button type="submit" class="delete">Delete</button>
-							<button type="submit" class="edit">Edit</button>
-						</th>
+						<td><?= $a['tafelnr'] ?></td>				
+						<td><?= $a['aantalpersonen']?></td>					
+							<th class="nopadding white">		
+							<a href="delete.php?type=tafel&amp;id=<?= $a['tafelnr'] ?>" class="delete" title="Verwijderen">Verwijderen</a>
+							<a href="edit.php?type=tafel&amp;id=<?= $a['tafelnr'] ?>" class="edit" title="Bewerken">Bewerken</a>
+						</th>			
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>6</td>
-						<th class="nopadding white">
-							<button type="submit" class="delete">Delete</button>
-							<button type="submit" class="edit">Edit</button>
-						</th>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>2</td>
-						<th class="nopadding white">
-							<button type="submit" class="delete">Delete</button>
-							<button type="submit" class="edit">Edit</button>
-						</th>
-					</tr>
-				</form>
+				
+ 				<?php } ?>
+
 			</tbody>
 		</table>
 	</section><!-- end content -->
+	<script src="js/script_backend.js"></script>
 </body>
 </html>

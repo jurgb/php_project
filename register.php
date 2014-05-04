@@ -1,4 +1,7 @@
 <?php
+
+	session_start();
+
 	include_once("class/User.class.php");
 	$u = new User();
 
@@ -10,18 +13,10 @@
 				$u->Firstname = $_POST['firstname'];
 				$u->Email = $_POST['email'];
 				$u->Password = $_POST['password'];
-				$u->Restaurant = $_POST['namerestaurant'];
-				$u->Adres = $_POST['address'];
-				$u->Postcode = $_POST['postalcode'];
 				$u->Save();
-				/*
-				session_start();
-				$_SESSION['name'] = $u->Name;
-				$_SESSION['email'] = $u->Email;
-				$_SESSION['loggedin'] = true;
-				header('Location: createpost.php');
-				*/
-				
+
+				header('Location: register_restaurant.php');
+
 			} catch (Exception $e) {
 				$alert= $e->getMessage();
 			}
@@ -77,17 +72,8 @@
 				<label for="repeatpassword">Herhaal wachtwoord</label>
 				<input type="password" id="repeatpassword" name="repeatpassword">
 
-				<label for="namerestaurant">Naam restaurant</label>
-				<input type="text" id="namerestaurant" name="namerestaurant">
-
 				<label for="email">Email</label>
 				<input type="text" id="email" name="email">
-
-				<label for="address">Adres</label>
-				<input type="text" id="address" name="address">
-
-				<label for="postalcode">Postcode</label>
-				<input type="text" id="postalcode" name="postalcode">
 
 				<button type="submit" id="btnSubmit" name="btnSubmit" class="shadow">Registreren</button>
 			</form>
