@@ -1,32 +1,5 @@
 <?php  
-/*
-	function canLogin($p_email, $p_password){
-		if($p_email == "IMD" && $p_password == "wachtwoord"){
-			return true;
-		} else{
-			return false;
-		} 
 
-	}
-
-	if(!empty($_POST)){
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-
-		if(canLogin($email, $password)){
-			$salt = "WsaoEdiIEkd";
-			$cookieData = $email . "," . md5($username.$salt);
-
-			session_start();
-			$_SESSION['email'] = $email;
-
-			header("Location: dashboard.php");
-
-		} else{
-			$alert = "Emailadres of wachtwoord is verkeerd";
-		}
-	}
-*/
 	session_start();
 	include_once('class/user.class.php');
 	$u = new user();

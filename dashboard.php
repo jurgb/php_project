@@ -2,6 +2,13 @@
 
 	session_start();
 
+	if(!empty($_POST))
+		{
+			if(isset($_POST['restaurant'])){
+					$_SESSION['restaurant_id'] = $_POST['restaurant'];
+			}
+		}
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -18,47 +25,12 @@
 
 	<section id="content">
 		<h1>Dashboard</h1>
+		
+		<div id="myresto_link">
+			
+			<p>Via volgende link kunnen bezoekers in uw restaurant reserveren:</p><span id="restaurant_link">http://www.myresto.be/app/restaurant.php?id=<?= $_SESSION['restaurant_id'] ?></span>
 
-		<table>
-			<tbody>
-				<tr>
-					<th style="width: 5%;">Nummer</th>
-					<th  style="width: 15%;">Aantal personen</th>
-					<th>Datum</th>
-					<th class="nopadding">
-						<a href="#" class="btn_toevoegen">Toevoegen</a>
-					</th>
-					
-				</tr>
-				<tr>
-					<td >1</td>
-					<td>5</td>
-					<td>26 april 2014</td>
-					<th class="nopadding white">
-						<a href="#" class="delete">Delete</a>
-						<a href="#" class="edit">Edit</a>
-					</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>5</td>
-					<td>26 april 2014</td>
-					<th class="nopadding white">
-						<a href="#" class="delete">Delete</a>
-						<a href="#" class="edit">Edit</a>
-					</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>5</td>
-					<td>26 april 2014</td>
-					<th class="nopadding white">
-						<a href="#" class="delete">Delete</a>
-						<a href="#" class="edit">Edit</a>
-					</th>
-				</tr>
-			</tbody>
-		</table>
+		</div>
 	</section><!-- end content -->
 </body>
 </html>

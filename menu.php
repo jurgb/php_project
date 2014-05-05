@@ -1,4 +1,24 @@
-<!doctype html>
+<?php 
+
+session_start();
+include_once("class/menu.class.php");
+
+		if(!empty($_POST))
+		{
+			if(isset($_POST['restaurant'])){
+					$_SESSION['restaurant_id'] = $_POST['restaurant'];
+			} else{
+				
+				$menu = new Menu();
+				$menu->Gerecht = $_POST['field1'];
+				$menu->Prijs = $_POST['field2'];
+				$menu->Type = $_POST['field3'];
+				$menu->Save();
+				
+			}
+		}
+
+?><!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -7,6 +27,8 @@
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/screen_backend.css">
+
+	<script src="js/jquery.min.js"></script>
 </head>
 <body>
 
@@ -28,44 +50,36 @@
 				</tr>
 				
 				<tr id="inputs_toevoegen">
-					<form action="" method="post"></form>
-					<td><input type="text"></td>
-					<td><input type="text"></td>
-					<td><input type="text"></td>
+					<form action="" method="post">
+					<td><input type="text" name="field1"></td>
+					<td><input type="text" name="field2"></td>
+					<td><input type="text" name="field3"></td>
 					<th class="nopadding white"><button type="submit" class="save"></button></th>
+					</form>
 				</tr>
 
-				<form action="" method="post">
+				<?php
+
+				$menu = new Menu();
+				$all = $menu->getAll();
+				foreach($all as $a) { ?>
 					<tr>
-						<td>Taartje van bloemkool en gelei van karwijzaad, gerookte maaspaling, zoet-zure groentjes en krokante venkel</td>
-						<td>6,00 &euro;</td>
-						<td>Voorgerecht</td>
-						<th class="nopadding white">
-							<button type="submit" class="delete">Delete</button>
-							<button type="submit" class="edit">Edit</button>
-						</th>
+						<td><?= $a['gerechtnaam'] ?></td>				
+						<td><?= $a['gerechtprijs']?></td>					
+						<td><?= $a['gerechttype'] ?></td>	
+						<th class="nopadding white">		
+						<a href="delete.php?type=menu&amp;id=<?= $a['gerecht_id'] ?>" class="delete" title="Verwijderen">Verwijderen</a>
+						<a href="edit.php?type=menu&amp;id=<?= $a['gerecht_id'] ?>" class="edit" title="Bewerken">Bewerken</a>
+						</th>			
 					</tr>
-					<tr>
-						<td>Tartaar van biologisch kalf in een dun jasje, gepocheerd krieleitje, aardappel limoen crisp en crème van raz el hanout</td>
-						<td>7,50 &euro;</td>
-						<td>Voorgerecht</td>
-						<th class="nopadding white">
-							<button type="submit" class="delete">Delete</button>
-							<button type="submit" class="edit">Edit</button>
-						</th>
-					</tr>
-					<tr>
-						<td>Tournedos van Ossenhaas, krokant gebakken aardappeltjes, winterse groentes en jus met oude balsamico</td>
-						<td>21,00 &euro;</td>
-						<td>Hoofdgerecht</td>
-						<th class="nopadding white">
-							<button type="submit" class="delete">Delete</button>
-							<button type="submit" class="edit">Edit</button>
-						</th>
-					</tr>
-				</form>
+								
+				 <?php } ?>
+				
+				
+				
 			</tbody>
 		</table>
 	</section><!-- end content -->
+	<script src="js/script_backend.js"></script>
 </body>
 </html>

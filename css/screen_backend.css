@@ -3,7 +3,7 @@ html{
 	font-family: Helvetica, Arial;
 }
 
-nav, #restaurant, th, h1{
+nav, label, button, #restaurant, th, h1{
   font-family: 'Source Sans Pro';
 }
 
@@ -136,9 +136,12 @@ select#restaurant{
   display: inline-block;
   width: 12px;
   background: #331313 url(../images/addrestaurant.png) no-repeat center;
-  padding: 14px;
+  height: 41px;
+  width: 40px;
   text-indent: -9999px;
   color: white;
+  position: relative;
+  top: -15px;
 }
 
 #addrestaurant:hover{
@@ -154,11 +157,11 @@ select#restaurant{
 
 table{
   width: 100%;
-    border: 1px solid #f2ebc3;
+    border: 1px solid #f0e6c9;
 }
 
 tr{
-  border-bottom: 1px solid #f2ebc3;
+  border-bottom: 1px solid #f0e6c9;
 }
 
 th{
@@ -166,7 +169,7 @@ th{
   color: #4c1b1b;
   font-weight: 400;
   padding: 15px;
-  background-color: #f2ebc3;
+  background-color: #f0e6c9;
   text-align: left;
   vertical-align: middle;
 }
@@ -229,9 +232,9 @@ th.white{
 }
 
 .delete:hover, .edit:hover,  .save:hover{
-  background-color: #f2ebc3;
-  border-bottom: 2px solid #ddd5a7;
-  height: 41px;
+  background-color: #f0e6c9;
+  border-bottom: 2px solid #cfc5a6;
+  height: 39px;
 }
 
 .delete{
@@ -247,14 +250,115 @@ th.white{
 }
 
 #inputs_toevoegen{
-
+  display: none;
 }
 
 #inputs_toevoegen td input{
   width: 100%;
   border-radius: 4px;
-  border: 1px solid #f2ebc3;
+  border: 1px solid #f0e6c9;
   height: 20px;
   color: #4c1b1b;
   padding: 0 5px;
 }
+
+#selectrestaurant,
+#selectrestaurant:hover{
+  border: 0;
+  height: 41px;
+  width: 30px;
+  text-indent: -9999px;
+  background-color: #e37227;
+  background-image: url(../images/arrow_right.png);
+  
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  left: -4px;
+  top: -1px;
+}
+
+#selectrestaurant:hover{
+  background-color: #dd5b1f;
+  cursor: pointer;
+}
+
+#form_edit{
+  float: left;
+  overflow: hidden;
+}
+
+#form_edit label{
+  font-size: 1.4rem;
+  color: #4c1b1b;
+  font-weight: 400;
+  float: left;
+  width: 100px;
+  clear: left;
+  margin: 15px 0;
+}
+
+#form_edit input,
+#form_edit textarea{
+  float: left;
+   border-radius: 4px;
+  border: 1px solid #f2ebc3;
+  width: 200px;
+  display: block;
+  color: #4c1b1b;
+  padding: 5px 8px;
+  margin: 10px;
+}
+
+#form_edit input:focus,
+#form_edit textarea:focus{
+  border: 1px solid #c2ba8c;
+}
+
+#form_edit button,
+#form_edit button:hover{
+  display: block;
+  clear: both;
+  font-size: 1.4rem;
+  border: 0;
+  padding: 10px 15px;
+  background-color: #e37227;
+  color: white;
+  border-bottom: 2px solid #d26116;
+  float: right;
+  margin: 10px;
+}
+
+#form_edit button:hover{
+  background-color: #dd5b1f;
+  cursor: pointer;
+}
+
+#myresto_link{
+  color: #4c1b1b;
+  background-color: #f0e6c9;
+  padding: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#restaurant_link{
+  background-color: white;
+  border: 1px solid #cfc5a6; 
+  display: block;
+  float: right;
+  color: #e37227;
+  font-size: 1.8rem;
+  font-family: 'Roboto';
+  padding: 10px;
+  width: 500px;
+  border-radius: 4px;
+
+}
+
+#myresto_link p{
+  float: left;
+  padding: 12px;
+  color: #4c1b1b;
+}
+

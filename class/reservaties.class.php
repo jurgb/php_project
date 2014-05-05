@@ -7,7 +7,9 @@ Developers: Jurgen barbier
 			Jeroen Dom
 */
 
-class reservatie
+include_once('Db.class.php');
+
+class Reservatie
 {
 
 	private $m_sName;
@@ -61,18 +63,55 @@ class reservatie
 		
 	public function Save()
 		{
-			include_once('Db.class.php');
 			//save user to database	
 			$db = new Db();
-			$sql = "INSERT INTO tblreservaties (naam, personen, datum, uur, tafel)
+			$sql = "INSERT INTO tbl_reservaties (klantnaam, aantalpersonen, datum, uur, tafelnr)
 			VALUES ('".$db->conn->real_escape_string($this->m_sName)."',
 					'".$db->conn->real_escape_string($this->m_iPersonen)."',
-					'".$db->conn->real_escape_string($this->m_dDate)."',
+					STR_TO_DATE('".$db->conn->real_escape_string($this->m_dDate)."', '%e-%m-%Y'),
 					'".$db->conn->real_escape_string($this->m_iUur)."',
 					'".$db->conn->real_escape_string($this->m_iTable)."'
 			)";
 			$db->conn->query($sql);
-			echo "query is : " . "</br>" . $sql;
 		}
+
+	public function getAll()
+		{
+		$db = new db();
+		$id = $_SESSION['restaurant_id'];
+		$sql="select reservatieid, klantnaam, aantalpersonen, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur, tafelnr from tbl_reservaties";
+		$result = $db->conn->query($sql);
+		return $result;
+		}
+
+	public function getById($id)
+		{
+		$db = new db();
+		$sql="select klantnaam, aantalpersonen, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur, tafelnr from tbl_reservaties WHERE reservatieid = '$id'";
+		$result = $db->conn->query($sql);
+		return $result;
+		}
+
+	public function Delete($id)
+		{
+		$db = new db();
+		$sql="DELETE FROM tbl_reservaties WHERE reservatieid = '$id'";
+		$db->conn->query($sql);
+		}
+
+
+	public function Update(){
+		$db = new Db();
+		$id= $_GET['id'];
+			$sql = "UPDATE tbl_reservaties 
+			SET klantnaam = '".$db->conn->real_escape_string($this->m_sName)."',
+				aantalpersonen = '".$db->conn->real_escape_string($this->m_iPersonen)."',
+				datum = STR_TO_DATE('".$db->conn->real_escape_string($this->m_dDate)."', '%e-%m-%Y'),
+				uur = '".$db->conn->real_escape_string($this->m_iUur)."',
+				tafelnr = '".$db->conn->real_escape_string($this->m_iTable)."'
+			WHERE reservatieid = $id";
+			$db->conn->query($sql);
+	}
+
 }
 ?>

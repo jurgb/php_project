@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Genereertijd: 25 apr 2014 om 12:17
+-- Genereertijd: 04 mei 2014 om 23:08
 -- Serverversie: 5.5.27
 -- PHP-versie: 5.4.7
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `tbl_gerechten` (
   `gerechttype` varchar(250) NOT NULL,
   PRIMARY KEY (`gerecht_id`),
   KEY `restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -46,11 +46,12 @@ CREATE TABLE IF NOT EXISTS `tbl_reservaties` (
   `reservatieid` int(11) NOT NULL AUTO_INCREMENT,
   `klantnaam` varchar(250) NOT NULL,
   `aantalpersonen` int(11) NOT NULL,
-  `datum` datetime NOT NULL,
+  `datum` date NOT NULL,
+  `uur` time NOT NULL,
   `tafelnr` int(11) NOT NULL,
   PRIMARY KEY (`reservatieid`),
   KEY `tafelnr` (`tafelnr`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
@@ -62,9 +63,14 @@ CREATE TABLE IF NOT EXISTS `tbl_restaurants` (
   `restaurant_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `restaurantnaam` varchar(250) NOT NULL,
+  `beschrijving` varchar(400) NOT NULL,
+  `adres` varchar(250) NOT NULL,
+  `postcode` int(10) NOT NULL,
+  `gemeente` varchar(250) NOT NULL,
+  `telefoonnr` varchar(30) NOT NULL,
   PRIMARY KEY (`restaurant_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
@@ -73,13 +79,12 @@ CREATE TABLE IF NOT EXISTS `tbl_restaurants` (
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_tafels` (
-  `tafelnr` int(11) NOT NULL AUTO_INCREMENT,
+  `tafelnr` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
   `aantalpersonen` varchar(250) NOT NULL,
   PRIMARY KEY (`tafelnr`),
-  UNIQUE KEY `aantalpersonen` (`aantalpersonen`),
   KEY `restaurant_id` (`restaurant_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -93,17 +98,8 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `voornaam` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
   `wachtwoord` varchar(250) NOT NULL,
-  `adres` varchar(250) NOT NULL,
-  `postcode` varchar(250) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Gegevens worden uitgevoerd voor tabel `tbl_users`
---
-
-INSERT INTO `tbl_users` (`user_id`, `naam`, `voornaam`, `email`, `wachtwoord`, `adres`, `postcode`) VALUES
-(1, 'Rijken', 'Rob', 'robrijken_92@hotmail.com', '7af2d9f6a06f8cbca996f4d5f626d5d2', 'Gerkenbergstraat 7', '3960');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
 
 --
 -- Beperkingen voor gedumpte tabellen

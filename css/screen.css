@@ -15,7 +15,7 @@ h1{
 
 p, ul{
   font-size: 1.4rem;
-  color: #8c8872;
+  color: #84827a;
   line-height: 20px;
 }
 
@@ -169,7 +169,7 @@ h2{
 }
 
 #featuresOuter{
-  background-color: #f2ebc3;
+  background-color: #f0e6c9;
 }
 
 #featuresInner{
@@ -229,7 +229,7 @@ h2{
 }
 
 #footerInner p{
-  color: #f2ebc3;
+  color: #f0e6c9;
 }
 
 #footerInner a{
@@ -284,12 +284,12 @@ h2{
 #title{
   width: 920px;
   margin: 0 auto;
-  border-top: 8px solid #f2ebc3;
+  border-top: 8px solid #f0e6c9;
   padding: 20px;
 }
 
 #formOuter{
-  background-color: #f2ebc3;
+  background-color: #f0e6c9;
 }
 
 #formInner{
@@ -315,7 +315,7 @@ label{
   color: #4c1b1b;
 }
 
-input{
+input, textarea{
   clear:both;
   width: 280px;
   padding: 10px;
@@ -323,10 +323,10 @@ input{
   border: none;
   margin: 7px 0 7px 15px;
   border: 1px solid #ddd6af;
-  color: #8c8872;
+  color: #84827a;
 }
 
-input:focus{
+input:focus, textarea:focus{
   border: 1px solid #4c1b1b;
 }
 

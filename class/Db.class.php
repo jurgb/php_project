@@ -4,7 +4,7 @@
 		private $m_sHost = "localhost";
 		private $m_sUser = "jurgb";
 		private $m_sPassword = "1308JuBa";
-		private $m_sDatabase = "php1";
+		private $m_sDatabase = "myresto";
 		public $conn;
 
 

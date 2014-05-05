@@ -15,9 +15,6 @@ Developers: Jurgen barbier
 		private $m_sFirstname;
 		private $m_sEmail;
 		private $m_sPassword;
-		private $m_sRestaurant;
-		private $m_sAdres;
-		private $m_iPostcode;
 		
 		public function __set($p_sProperty, $p_vValue)
 		{
@@ -31,23 +28,14 @@ Developers: Jurgen barbier
 				case "Email":
 					$this->m_sEmail =$p_vValue;
 					break;
-				
 				case "Password":
 					if(strlen($p_vValue) < 5)
 					{
-						throw new Exception("Password not long enough.");	
+						throw new Exception("Wachtwoord niet lang genoeg.");	
+					} else{
+						$salt = '(#@!myrestosalt!@#)';
+						$this->m_sPassword =md5($p_vValue.$salt);
 					}
-					$salt = '(#@!myrestosalt!@#)';
-					$this->m_sPassword =md5($p_vValue.$salt);
-					break;
-				case 'Restaurant':
-					$this->m_sRestaurant = $p_vValue;
-					break;
-				case 'Adres':
-					$this->m_sAdres = $p_vValue;
-					break;
-				case 'Postcode':
-					$this->m_iPostcode = $p_vValue;
 					break;
 			}
 		}
@@ -68,15 +56,6 @@ Developers: Jurgen barbier
 				case "Password":
 					return $this->m_sPassword;
 					break;
-				case 'Restaurant':
-					return $this->m_sRestaurant;
-					break;
-				case 'Adres':
-					return $this->m_sAdres;
-					break;
-				case 'Postcode':
-					return $this->m_iPostcode;
-					break;
 			}
 		}
 		
@@ -84,41 +63,44 @@ Developers: Jurgen barbier
 		{
 			//save user to database	
 			$db = new Db();
-			$sql = "INSERT INTO tblusers (naam, voornaam, email, wachtwoord, restaurantnaam, adres, postcode)
+			$sql = "INSERT INTO tbl_users (naam, voornaam, email, wachtwoord)
 			VALUES ('".$db->conn->real_escape_string($this->m_sName)."',
 					'".$db->conn->real_escape_string($this->m_sFirstname)."',
 					'".$db->conn->real_escape_string($this->m_sEmail)."',
-					'".$db->conn->real_escape_string($this->m_sPassword)."',
-					'".$db->conn->real_escape_string($this->m_sRestaurant)."',
-					'".$db->conn->real_escape_string($this->m_sAdres)."',
-					'".$db->conn->real_escape_string($this->m_iPostcode)."'
+					'".$db->conn->real_escape_string($this->m_sPassword)."'
 			)";
 			$db->conn->query($sql);
-			echo "query is : " . "</br>" . $sql;
+
+			//user_id van de geregistreerde gebruiker in de session variabele opslaan
+			$user_id = $db->conn->insert_id;
+			$_SESSION['user_id'] = $user_id;
 		}
 		
 		public function Login($p_sUsername, $p_sPassword)
 		{
 			$db = new Db();
 			$salt = '(#@!myrestosalt!@#)';
-			$sql = "SELECT * from tblusers WHERE email = '".$db->conn->real_escape_string($p_sUsername)."' AND wachtwoord = '".$db->conn->real_escape_string(md5($p_sPassword.$salt))."';";
+			$sql = "SELECT * from tbl_users WHERE email = '".$db->conn->real_escape_string($p_sUsername)."' AND wachtwoord = '".$db->conn->real_escape_string(md5($p_sPassword.$salt))."';";
 			
 			$result = $db->conn->query($sql);
+			$row = $result->fetch_assoc();	
 			
 			if($result->num_rows ==1)
 			{
+
 				session_start();
-				/*$_SESSION['username'] = $u->Email;
-				$_SESSION['naam'] = $u->Name . " " . $u->Firstname;
-				$_SESSION['loggedinPassword'] = $u->Password;*/
+				$_SESSION['naam'] = $row['voornaam'];
+				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['loggedin'] = true;
-				header('Location: reservaties.php');
+				header('Location: dashboard.php');
 			}
 			else
 			{
 				throw new Exception("Username and/or password are invalid.");
-			}	
+			}
 		}
+
+		
 	}
 	
 ?>
