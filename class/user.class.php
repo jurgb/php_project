@@ -87,7 +87,7 @@ Developers: Jurgen barbier
 			
 			if($result->num_rows ==1)
 			{
-
+				session_destroy();
 				session_start();
 				$_SESSION['naam'] = $row['voornaam'];
 				$_SESSION['user_id'] = $row['user_id'];
