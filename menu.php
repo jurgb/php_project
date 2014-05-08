@@ -37,11 +37,12 @@ include_once("class/menu.class.php");
 	<section id="content">
 		<h1>Menu</h1>
 
+		<div class="alert">Hier komen eventuele errors</div>
 		<table>
 			<tbody>
 				<tr>
 					<th style="width: 60%;">Gerecht</th>
-					<th style="width: 10%;">Prijs</th>
+					<th style="width: 10%;">Prijs (€)</th>
 					<th>Type</th>
 					<th class="nopadding">
 						<a href="#" class="btn_toevoegen">Toevoegen</a>
@@ -65,7 +66,7 @@ include_once("class/menu.class.php");
 				foreach($all as $a) { ?>
 					<tr>
 						<td><?= $a['gerechtnaam'] ?></td>				
-						<td><?= $a['gerechtprijs']?></td>					
+						<td>€ <?= $a['gerechtprijs']?></td>					
 						<td><?= $a['gerechttype'] ?></td>	
 						<th class="nopadding white">		
 						<a href="delete.php?type=menu&amp;id=<?= $a['gerecht_id'] ?>" class="delete" title="Verwijderen">Verwijderen</a>

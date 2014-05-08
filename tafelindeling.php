@@ -42,6 +42,7 @@ include_once("class/tafelindeling.class.php");
 	<section id="content">
 		<h1>Tafelindeling</h1>
 		
+		<div class="alert">Hier komen eventuele errors</div>
 		<table>
 			<tbody>
 				<tr>

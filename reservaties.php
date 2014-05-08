@@ -1,6 +1,6 @@
 <?php
-include_once('class/reservaties.class.php');
 	session_start();
+	include_once('class/reservaties.class.php');
 
 	if(!isset($_SESSION['loggedin']))
 	{
@@ -51,7 +51,9 @@ include_once('class/reservaties.class.php');
 		<h1>Reservaties</h1>
 
 		<table>
+
 			<tbody>
+				<div class="alert">Hier komen eventuele errors</div>
 				<tr>
 					<th style="width: 20%;">Naam</th>
 					<th style="width: 3%;">Personen</th>
@@ -78,7 +80,6 @@ include_once('class/reservaties.class.php');
 
 <?php
 
-include_once("class/reservaties.class.php");
 $res = new Reservatie();
 $all = $res->getAll();
 

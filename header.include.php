@@ -5,12 +5,10 @@ $restaurant = new Restaurant();
 
 if(empty($_SESSION['restaurant_id'])){
 	$result2 = $restaurant->getFirst();
-
-	foreach ($result2 as $restaurant) {
 	
-		$_SESSION['restaurant_id'] = $restaurant['restaurant_id'];
+	$_SESSION['restaurant_id'] = $result2['restaurant_id'];
 
-	}
+
 
 }
 

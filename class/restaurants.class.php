@@ -111,7 +111,16 @@ Developers: Jurgen barbier
 			$db = new Db();
 			$sql = "SELECT * FROM tbl_restaurants WHERE user_id = {$_SESSION['user_id']} LIMIT 1";
 			$result = $db->conn->query($sql);
-			return $result;
+			$row = mysqli_fetch_array($result);
+			return $row;
+		}
+
+		public function getFirstByRestaurant(){
+			$db = new Db();
+			$sql = "SELECT * FROM tbl_restaurants WHERE restaurant_id = {$_SESSION['a_restaurant_id']} LIMIT 1";
+			$result = $db->conn->query($sql);
+			$row = mysqli_fetch_array($result);
+			return $row;
 		}
 	}
 	

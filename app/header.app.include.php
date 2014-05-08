@@ -5,7 +5,7 @@ $path = $_SERVER['SCRIPT_NAME'];
 <div id="headerOuter">
 	<a id="top"></a>
 		<div id="headerInner">
-			<a href="restaurant.php" id="logo">Het Ketelke</a>
+			<a href="restaurant.php" id="logo"><?php echo $_SESSION['a_restaurantnaam'] ?></a>
 			<a href="#" id="ober">Ober</a>
 			<a href="#" id="nav_toggle">Navigation Toggle</a>
 		</div><!--end headerInner-->

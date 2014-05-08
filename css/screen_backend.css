@@ -15,6 +15,14 @@ img{
   width: 250px;
 }
 
+.alert{
+  font-size: 14px;
+  color: #ad3030;
+  background-color: #edb5b5;
+  border: 1px solid #d58585;
+  padding: 15px;
+}
+
 
 #headerOuter{
 	height: 130px;

@@ -1,8 +1,12 @@
-<!doctype html>
+<?php 
+
+	session_start();
+
+ ?><!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Het Ketelke</title>
+	<title><?php echo $_SESSION['a_restaurantnaam'] ?></title>
 
 	<meta name="viewport" content="width=device-width">
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
@@ -18,8 +22,8 @@
 	<section id="content">
 		<h1>Reserveren</h1>
 
+		<div class="alert">Hier komen eventuele errors</div>
 			<form action="" method="post" id="form_reserveren">
-				<div class="alert">Hier komen eventuele errors</div>
 				<div class="padding">
 				<label for="date">Datum</label>
 				<input type="text" placeholder="dd-mm-jjjj" id="date" name="date">

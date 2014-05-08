@@ -65,7 +65,7 @@ Developers: Jurgen barbier
 			$sql = "INSERT INTO tbl_gerechten (restaurant_id, gerechtnaam, gerechtprijs, gerechttype )
 			VALUES ('".$_SESSION['restaurant_id']."',
 				'".$db->conn->real_escape_string($this->m_sGerecht)."',
-					'".$db->conn->real_escape_string($this->m_iPrijs)."',
+					 REPLACE('".$db->conn->real_escape_string($this->m_iPrijs)."',',','.'),
 					'".$db->conn->real_escape_string($this->m_sType)."'
 					
 			)";
@@ -95,12 +95,27 @@ Developers: Jurgen barbier
 			$sql = "UPDATE tbl_gerechten
 			SET restaurant_id = '".$_SESSION['restaurant_id']."',
 				gerechtnaam = '".$db->conn->real_escape_string($this->m_sGerecht)."',
-				gerechtprijs = '".$db->conn->real_escape_string($this->m_iPrijs)."',
+				gerechtprijs = REPLACE('".$db->conn->real_escape_string($this->m_iPrijs)."',',','.'),
 				gerechttype = '".$db->conn->real_escape_string($this->m_sType)."'
 			WHERE gerecht_id = $id";
 			$db->conn->query($sql);
 		}
-		
+
+		public function getDistinctGerechttype(){
+			$db = new db();
+			$id = $_SESSION['restaurant_id'];
+			$sql="SELECT DISTINCT gerechttype FROM tbl_gerechten WHERE restaurant_id = $id";
+			$result = $db->conn->query($sql);
+			return $result;
+		}		
+
+		public function getByGerechttype($type){
+			$db = new db();
+			$id = $_SESSION['restaurant_id'];
+			$sql="SELECT * from tbl_gerechten WHERE gerechttype = '$type' AND restaurant_id = $id";
+			$result = $db->conn->query($sql);
+			return $result;
+		}
 	
 	}
 	

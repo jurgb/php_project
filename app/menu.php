@@ -1,11 +1,13 @@
 <?php 
 
+	session_start();
+	include_once("../class/menu.class.php");
 
  ?><!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Het Ketelke</title>
+	<title><?php echo $_SESSION['a_restaurantnaam'] ?></title>
 
 	<meta name="viewport" content="width=device-width">
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
@@ -21,30 +23,23 @@
 	<section id="content">
 		<h1>Menu</h1>
 
-		<h2>Voorgerechten</h2>
+		<?php 
 
-		<ul class="gerechten">
-			<li>Asperges op Vlaamse wijze <span class="prijs">&euro; 6,00</span></li>
-			<li>Bladerdeegtaart met ui, artisjok, ansjovis en witschimmelkaas<span class="prijs">&euro; 8,20</span></li>
-			<li>Kleine wildburgers met veenbessen en appel<span class="prijs">&euro; 6,80</span></li>
-			<li>Asperges op Vlaamse wijze <span class="prijs">&euro; 6,00</span></li>
-			<li>Bladerdeegtaart met ui, artisjok, ansjovis en witschimmelkaas<span class="prijs">&euro; 8,20</span></li>
-			<li>Kleine wildburgers met veenbessen en appel<span class="prijs">&euro; 6,80</span></li>
-		</ul>
+		$m = new Menu();
+		$gerechttypes = $m->getDistinctGerechttype();
 
-		<h2>Hoofdgerechten</h2>
+		// Voor elk uniek gerechttype, print alle gerechten van dat type af
+		foreach ($gerechttypes as $type){
+			echo "<h2>" . $type['gerechttype'] . "</h2>";
 
-		<ul class="gerechten">
-			<li>Asperges op Vlaamse wijze <span class="prijs">&euro; 6,00</span></li>
-			<li>Bladerdeegtaart met ui, artisjok, ansjovis en witschimmelkaas<span class="prijs">&euro; 8,20</span></li>
-			<li>Kleine wildburgers met veenbessen en appel<span class="prijs">&euro; 6,80</span></li>
-			<li>Asperges op Vlaamse wijze <span class="prijs">&euro; 6,00</span></li>
-			<li>Bladerdeegtaart met ui, artisjok, ansjovis en witschimmelkaas<span class="prijs">&euro; 8,20</span></li>
-			<li>Kleine wildburgers met veenbessen en appel<span class="prijs">&euro; 6,80</span></li>
-			<li>Asperges op Vlaamse wijze <span class="prijs">&euro; 6,00</span></li>
-			<li>Bladerdeegtaart met ui, artisjok, ansjovis en witschimmelkaas<span class="prijs">&euro; 8,20</span></li>
-			<li>Kleine wildburgers met veenbessen en appel<span class="prijs">&euro; 6,80</span></li>
-		</ul>
+			$all = $m->getByGerechttype($type['gerechttype']);
+
+			echo "<ul class='gerechten'>";
+			foreach ($all as $gerecht) {
+				echo "<li>" . $gerecht['gerechtnaam'] . "<span class='prijs'>€ " . $gerecht['gerechtprijs'] . "</span></li>";
+			}
+			echo "</ul>";
+		}?>
 
 		<a href="#top" id="naarBoven">Naar boven</a>
 	</section><!-- end content -->

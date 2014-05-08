@@ -65,29 +65,32 @@ class Reservatie
 		{
 			//save user to database	
 			$db = new Db();
-			$sql = "INSERT INTO tbl_reservaties (klantnaam, aantalpersonen, datum, uur, tafelnr)
+			$id = $_SESSION['restaurant_id'];
+			$sql = "INSERT INTO tbl_reservaties (klantnaam, aantalpersonen, datum, uur, tafel_id)
 			VALUES ('".$db->conn->real_escape_string($this->m_sName)."',
 					'".$db->conn->real_escape_string($this->m_iPersonen)."',
 					STR_TO_DATE('".$db->conn->real_escape_string($this->m_dDate)."', '%e-%m-%Y'),
 					'".$db->conn->real_escape_string($this->m_iUur)."',
-					'".$db->conn->real_escape_string($this->m_iTable)."'
-			)";
+					(SELECT tafel_id FROM tbl_tafels WHERE tafelnr = ".$db->conn->real_escape_string($this->m_iTable)." AND restaurant_id = $id
+			))";
 			$db->conn->query($sql);
+			
 		}
 
 	public function getAll()
 		{
 		$db = new db();
 		$id = $_SESSION['restaurant_id'];
-		$sql="select reservatieid, klantnaam, aantalpersonen, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur, tafelnr from tbl_reservaties";
+		$sql="SELECT reservatieid, klantnaam, tbl_reservaties.aantalpersonen, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur, tbl_tafels.tafelnr FROM tbl_reservaties, tbl_tafels WHERE tbl_reservaties.tafel_id = tbl_tafels.tafel_id AND tbl_tafels.restaurant_id = $id";
 		$result = $db->conn->query($sql);
 		return $result;
+
 		}
 
 	public function getById($id)
 		{
 		$db = new db();
-		$sql="select klantnaam, aantalpersonen, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur, tafelnr from tbl_reservaties WHERE reservatieid = '$id'";
+		$sql="SELECT klantnaam, tbl_reservaties.aantalpersonen, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur, tbl_tafels.tafelnr FROM tbl_reservaties, tbl_tafels WHERE reservatieid = '$id' AND tbl_reservaties.tafel_id = tbl_tafels.tafel_id";
 		$result = $db->conn->query($sql);
 		return $result;
 		}
@@ -103,12 +106,14 @@ class Reservatie
 	public function Update(){
 		$db = new Db();
 		$id= $_GET['id'];
+		$resto_id = $_SESSION['restaurant_id'];
 			$sql = "UPDATE tbl_reservaties 
 			SET klantnaam = '".$db->conn->real_escape_string($this->m_sName)."',
 				aantalpersonen = '".$db->conn->real_escape_string($this->m_iPersonen)."',
 				datum = STR_TO_DATE('".$db->conn->real_escape_string($this->m_dDate)."', '%e-%m-%Y'),
 				uur = '".$db->conn->real_escape_string($this->m_iUur)."',
-				tafelnr = '".$db->conn->real_escape_string($this->m_iTable)."'
+				tafel_id = (SELECT tafel_id FROM tbl_tafels WHERE tafelnr = ".$db->conn->real_escape_string($this->m_iTable)." AND restaurant_id = $resto_id
+			)
 			WHERE reservatieid = $id";
 			$db->conn->query($sql);
 	}
