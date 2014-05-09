@@ -10,9 +10,9 @@ include_once("class/menu.class.php");
 			} else{
 				
 				$menu = new Menu();
-				$menu->Gerecht = $_POST['field1'];
-				$menu->Prijs = $_POST['field2'];
-				$menu->Type = $_POST['field3'];
+				$menu->Gerecht = $_POST['gerecht'];
+				$menu->Prijs = $_POST['prijs'];
+				$menu->Type = $_POST['type'];
 				$menu->Save();
 				
 			}
@@ -38,7 +38,7 @@ include_once("class/menu.class.php");
 		<h1>Menu</h1>
 
 		<div class="alert">Hier komen eventuele errors</div>
-		<table>
+		<table id="tabel_menu">
 			<tbody>
 				<tr>
 					<th style="width: 60%;">Gerecht</th>
@@ -52,9 +52,9 @@ include_once("class/menu.class.php");
 				
 				<tr id="inputs_toevoegen">
 					<form action="" method="post">
-					<td><input type="text" name="field1"></td>
-					<td><input type="text" name="field2"></td>
-					<td><input type="text" name="field3"></td>
+					<td><input type="text" id="menu_gerecht" name="gerecht"></td>
+					<td><input type="text" id="menu_prijs" name="prijs"></td>
+					<td><input type="text" id="menu_type" name="type"></td>
 					<th class="nopadding white"><button type="submit" class="save"></button></th>
 					</form>
 				</tr>
@@ -82,5 +82,6 @@ include_once("class/menu.class.php");
 		</table>
 	</section><!-- end content -->
 	<script src="js/script_backend.js"></script>
+	<script src="js/ajax_menu.js"></script>
 </body>
 </html>

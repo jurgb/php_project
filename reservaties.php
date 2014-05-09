@@ -1,6 +1,7 @@
 <?php
-	session_start();
 	include_once('class/reservaties.class.php');
+	$res = new Reservatie();
+	session_start();
 
 	if(!isset($_SESSION['loggedin']))
 	{
@@ -13,7 +14,7 @@
 				if(isset($_POST['restaurant'])){
 					$_SESSION['restaurant_id'] = $_POST['restaurant'];
 				} else{
-				$res = new Reservatie();
+				
 
 				$res->Name = $_POST['name'];
 				$res->Table = $_POST['tafel'];
@@ -50,7 +51,7 @@
 	<section id="content">
 		<h1>Reservaties</h1>
 
-		<table>
+		<table id="tabel_reservaties">
 
 			<tbody>
 				<div class="alert">Hier komen eventuele errors</div>
@@ -68,18 +69,18 @@
 				
 				<tr id="inputs_toevoegen">
 					<form action="" method="post">
-					<td><input type="text" name="name"></td>
-					<td><input type="text" name="personen"></td>
-					<td><input type="text" name="datum" placeholder="dd-mm-jjjj"></td>
-					<td><input type="text" name="uur"></td>
-					<td><input type="text" name="tafel"></td>
+					<td><input type="text" id="reservatie_name" name="name"></td>
+					<td><input type="text" id="reservatie_personen" name="personen"></td>
+					<td><input type="text" id="reservatie_datum" name="datum" placeholder="dd-mm-jjjj"></td>
+					<td><input type="text" id="reservatie_uur" name="uur"></td>
+					<td><input type="text" id="reservatie_tafel" name="tafel"></td>
 					<th class="nopadding white"><button type="submit" class="save"></button></th>
 				</form>
 				</tr>
 
 
 <?php
-
+include_once("class/reservaties.class.php");
 $res = new Reservatie();
 $all = $res->getAll();
 
@@ -105,5 +106,6 @@ if($all){
 		</table>
 	</section><!-- end content -->
 	<script src="js/script_backend.js"></script>
+	<script src="js/ajax_reservaties.js"></script>
 </body>
 </html>
