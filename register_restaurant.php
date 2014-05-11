@@ -53,7 +53,7 @@
 				$openuren->Zondag_sluiting_avond = $_POST['zondagsluita'];
 				$openuren->Save();
 
-				//header('Location: login.php');
+				header('Location: login.php');
 				
 			} catch (Exception $e) {
 				$alert= $e->getMessage();

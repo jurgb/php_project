@@ -1,5 +1,4 @@
 <?php 
-$path = $_SERVER['SCRIPT_NAME'];
 include_once('class/restaurants.class.php');
 $restaurant = new Restaurant();
 

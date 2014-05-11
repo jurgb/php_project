@@ -36,7 +36,7 @@ include_once("class/menu.class.php");
 
 	<section id="content">
 		<h1>Menu</h1>
-
+		<?php include('timer.include.php') ?>
 		<div class="alert">Hier komen eventuele errors</div>
 		<table id="tabel_menu">
 			<tbody>

@@ -288,7 +288,7 @@ Developers: Jurgen barbier
 				$openingsuren_id = $db->conn->insert_id;
 				$_SESSION['openingsuren_id'] = $openingsuren_id;
 			
-			echo "query is : " . "</br>" . $sql1;
+			//echo "query is : " . "</br>" . $sql1;
 		}
 
 		public function getAll()

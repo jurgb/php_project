@@ -50,7 +50,7 @@
 
 	<section id="content">
 		<h1>Reservaties</h1>
-
+		<?php include('timer.include.php') ?>
 		<table id="tabel_reservaties">
 
 			<tbody>

@@ -32,7 +32,7 @@
 
 	<section id="content">
 		<h1>Dashboard</h1>
-		
+		<?php include('timer.include.php') ?>
 		<div id="myresto_link">
 			
 			<p>Via volgende link kunnen bezoekers in uw restaurant reserveren:</p><span id="restaurant_link">http://www.myresto.be/app/login.php?id=<?php echo $_SESSION['restaurant_id'] ?></span>

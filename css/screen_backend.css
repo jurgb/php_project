@@ -3,8 +3,8 @@ html{
 	font-family: Helvetica, Arial;
 }
 
-nav, label, button, #restaurant, th, h1{
-  font-family: 'Source Sans Pro';
+nav, label, button, #restaurant, th, h1, h2, h3{
+  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 a, p, li{
@@ -196,6 +196,17 @@ h1{
   font-weight: 400;
 }
 
+h2{
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #4c1b1b;
+  margin: 30px 0;
+}
+
+h3{
+  font-weight: 600;
+}
+
 a.btn_toevoegen:link,
 a.btn_toevoegen:visited,
 a.btn_toevoegen:hover,
@@ -318,6 +329,10 @@ th.white{
   margin: 10px;
 }
 
+#form_edit textarea{
+  resize: vertical;
+}
+
 #form_edit input:focus,
 #form_edit textarea:focus{
   border: 1px solid #c2ba8c;
@@ -374,7 +389,8 @@ th.white{
 {
    background-color: #f0e6c9;
    width:100%;
-   height:520px;
+   padding-bottom: 20px;
+   overflow: hidden;
 }
 .form_edit2
 {
@@ -385,12 +401,19 @@ th.white{
 {
   float:right;
   margin-top: -35px;
-  font-size: 20px;
-
-color: #4c1b1b;
-
+  font-size: 2.0rem;
+  font-weight: 400;
+  color: #4c1b1b;
+  font-family: 'Source Sans Pro';
+  background: url(../images/time.png) no-repeat center left;
+  padding-left: 20px;
 
 }
+
+h2#openingsuren{
+  margin-bottom: 7px;
+}
+
 .form_edit3
 {
   margin-left:40px;
@@ -429,15 +452,12 @@ color: #4c1b1b;
 {
   width:40px;
 }
-#openingsuren
-{
-  margin-bottom:-5px;
-}
+
 #voormiddag
 {
    float:left;
    margin-top:5px;
-   margin-left:130px;
+   margin-left:155px;
    font-size:15px;
    color: #4c1b1b;
 }
@@ -445,7 +465,7 @@ color: #4c1b1b;
 {
   float:left;
    margin-top:5px;
-  margin-left:80px;
+  margin-left:112px;
   font-size:15px;
   color: #4c1b1b;
 }
@@ -469,6 +489,12 @@ float:right;
   margin: 15px 0;
 }
 
-
-
+#uur-info{
+  float: right;
+  font-size: 1.0rem;
+  padding: 10px;
+  color: #734748;
+  background: url(../images/opgelet.png) no-repeat center left;
+  padding: 20px;
+}
 
