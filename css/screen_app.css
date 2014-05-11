@@ -6,7 +6,7 @@ html{
   height: 100%;
 }
 
-nav, button, #ober, #reserveer_lnk, #naarBoven, #restaurant, #results th, h3, label, h2, h1, #logo, #login_btn_google, #login_btn_fb{
+nav, button, #ober, #reserveer_lnk, #naarBoven, #restaurant, #results th, #results_bevestigen th, h3, label, h2, h1, #logo, #login_btn_google, #login_btn_fb{
   font-family: 'Source Sans Pro';
 }
 
@@ -309,6 +309,20 @@ label{
   background-color: white;
 }
 
+#results_select{
+  width: 80px;
+ border-radius: 4px;
+  border: 1px solid #f0e6c9;
+  height: 20px;
+  color: #4c1b1b;
+  padding: 0 5px;
+  display: inline-block;
+}
+
+.hide{
+  display: none;
+}
+
 button#controleer_btn{
   display: block;
   padding: 15px;
@@ -336,6 +350,14 @@ button#controleer_btn:hover{
   color: #ad3030;
   background-color: #edb5b5;
   border: 1px solid #d58585;
+  padding: 15px;
+}
+
+.feedback{
+  font-size: 14px;
+  color: #6cac60;
+  background-color: #c3e59b;
+  border: 1px solid #6cac60;
   padding: 15px;
 }
 
@@ -367,11 +389,11 @@ table#results td{
   color: #4c1b1b;
 }
 
-#reserveer_lnk:link,
+#reserveer_lnk,
 #reserveer_lnk:visited,
 #reserveer_lnk:hover,
 #reserveer_lnk:active{
-  display: inline;
+  background-color: white;
   width: 100%;
   font-weight: 400;
   font-size: 1.4rem;
@@ -379,7 +401,7 @@ table#results td{
   border: none;
   text-decoration: none;
   float: right;
-  width: 70px;
+  width: 100px;
   padding: 14px 15px 12px 15px;
   color: #4c1b1b;
 }
@@ -396,6 +418,32 @@ table#results th.nopadding{
 
 table#results th.white{
   background-color: white;
+}
+
+table#results_bevestigen{
+  width: 100%;
+  margin: 0;
+}
+
+table#results_bevestigen tr{
+  border: 1px solid #f0e6c9;
+}
+
+table#results_bevestigen th{
+  font-size: 1.4rem;
+  width: 80px;
+  color: #4c1b1b;
+  font-weight: 400;
+  padding: 15px;
+  background-color: #f0e6c9;
+  text-align: left;
+  vertical-align: middle;
+}
+
+table#results_bevestigen td{
+  padding: 15px;
+  font-size: 1.2rem;
+  color: #4c1b1b;
 }
 
 

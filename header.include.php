@@ -36,6 +36,9 @@ if(empty($_SESSION['restaurant_id'])){
 					<li><a href="menu.php"
 						<?php if($path == '/myresto/menu.php'){echo 'class="current"';}; ?>
 						>Menu</a></li>
+						<li><a href="instellingen.php"
+						<?php if($path == '/myresto/instellingen.php'){echo 'class="current"';}; ?>
+						>Instellingen</a></li>
 				</ul>
 			</nav>
 

@@ -77,6 +77,22 @@ class Reservatie
 			
 		}
 
+	public function SaveAsUser()
+		{
+			//save user to database	
+			$db = new Db();
+			$id = $_SESSION['a_restaurant_id'];
+			$sql = "INSERT INTO tbl_reservaties (klantnaam, aantalpersonen, datum, uur, tafel_id)
+			VALUES ('".$db->conn->real_escape_string($this->m_sName)."',
+					'".$db->conn->real_escape_string($this->m_iPersonen)."',
+					STR_TO_DATE('".$db->conn->real_escape_string($this->m_dDate)."', '%e-%m-%Y'),
+					'".$db->conn->real_escape_string($this->m_iUur)."',
+					(SELECT tafel_id FROM tbl_tafels WHERE tafelnr = ".$db->conn->real_escape_string($this->m_iTable)." AND restaurant_id = $id
+			))";
+			$db->conn->query($sql);
+			
+		}
+
 	public function getAll()
 		{
 		$db = new db();
@@ -91,6 +107,14 @@ class Reservatie
 		{
 		$db = new db();
 		$sql="SELECT klantnaam, tbl_reservaties.aantalpersonen, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur, tbl_tafels.tafelnr FROM tbl_reservaties, tbl_tafels WHERE reservatieid = '$id' AND tbl_reservaties.tafel_id = tbl_tafels.tafel_id";
+		$result = $db->conn->query($sql);
+		return $result;
+		}
+
+	public function getByDate($res_datum)
+		{
+		$db = new db();
+		$sql="SELECT klantnaam, tafel_id, DATE_FORMAT(`datum`,'%e-%m-%Y') AS datum, TIME_FORMAT(`uur`,'%H:%i') AS uur FROM tbl_reservaties WHERE datum = STR_TO_DATE('".$res_datum."','%e-%m-%Y')";
 		$result = $db->conn->query($sql);
 		return $result;
 		}

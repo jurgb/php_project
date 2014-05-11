@@ -122,6 +122,29 @@ Developers: Jurgen barbier
 			$row = mysqli_fetch_array($result);
 			return $row;
 		}
+		public function getById($id)
+		{
+		$db = new db();
+		$sql="SELECT * from tbl_restaurants WHERE restaurant_id = '".$_SESSION['restaurant_id']."'";
+		$result = $db->conn->query($sql);
+		return $result;
+		}
+		public function Update(){
+
+		$db = new Db();
+		$id= $_SESSION['restaurant_id'];
+			$sql = "UPDATE tbl_restaurants
+			SET user_id = '".$_SESSION['user_id']."',
+				restaurantnaam = '".$db->conn->real_escape_string($this->m_sRestaurantname)."',
+				beschrijving = '".$db->conn->real_escape_string($this->m_sDescription)."',
+				adres = '".$db->conn->real_escape_string($this->m_sAddress)."',
+				postcode = '".$db->conn->real_escape_string($this->m_sPostalcode)."',
+				gemeente = '".$db->conn->real_escape_string($this->m_sCity)."',
+				telefoonnr = '".$db->conn->real_escape_string($this->m_sTelnr)."'
+			WHERE restaurant_id = '".$_SESSION['restaurant_id']."'";
+			$db->conn->query($sql);
+			echo "query is : " . "</br>" . $sql;
+		}
 	}
 	
 ?>

@@ -369,4 +369,106 @@ th.white{
   padding: 12px;
   color: #4c1b1b;
 }
+/*DASHBOARD*/
+#bgdashboard
+{
+   background-color: #f0e6c9;
+   width:100%;
+   height:520px;
+}
+.form_edit2
+{
+  margin-left:30px;
+
+}
+#date-time
+{
+  float:right;
+  margin-top: -35px;
+  font-size: 20px;
+
+color: #4c1b1b;
+
+
+}
+.form_edit3
+{
+  margin-left:40px;
+  float: right;
+}
+.form_edit3 #maandag
+{
+  width:40px;
+}
+.form_edit3 #dinsdag
+{
+  width:40px;
+}
+
+.form_edit3 #woensdag
+{
+  width:40px;
+}
+
+.form_edit3 #donderdag
+{
+  width:40px;
+}
+
+.form_edit3 #vrijdag
+{
+  width:40px;
+}
+
+.form_edit3 #zaterdag
+{
+  width:40px;
+}
+
+.form_edit3 #zondag
+{
+  width:40px;
+}
+#openingsuren
+{
+  margin-bottom:-5px;
+}
+#voormiddag
+{
+   float:left;
+   margin-top:5px;
+   margin-left:130px;
+   font-size:15px;
+   color: #4c1b1b;
+}
+#namiddag
+{
+  float:left;
+   margin-top:5px;
+  margin-left:80px;
+  font-size:15px;
+  color: #4c1b1b;
+}
+.form_edit3 #gesloten
+{
+  width:40px;
+  margin-left:-10px;
+  margin-top: 18px;
+  
+  margin-right: -10px;
+
+}
+#labelgesloten
+{
+   font-size: 1.4rem;
+  color: #4c1b1b;
+  font-weight: 400;
+  
+  width: 100px;
+float:right;
+  margin: 15px 0;
+}
+
+
+
 

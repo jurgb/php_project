@@ -49,10 +49,16 @@ Developers: Jurgen barbier
 		$sql="SELECT * FROM tbl_tafels WHERE restaurant_id = $id ORDER BY tafelnr ASC, aantalpersonen ASC";
 		$result = $db->conn->query($sql);
 		return $result;
-
-
-
 		}
+
+		public function getByMaxPeople($aantal)
+		{
+		$db = new db();
+		$sql="select * from tbl_tafels WHERE aantalpersonen >= '$aantal'";
+		$result = $db->conn->query($sql);
+		return $result;
+		}
+
 		public function Save()
 		{
 			//save user to database	
