@@ -492,9 +492,9 @@ float:right;
 #uur-info{
   float: right;
   font-size: 1.0rem;
-  padding: 10px;
+  padding: 20px;
   color: #734748;
   background: url(../images/opgelet.png) no-repeat center left;
-  padding: 20px;
+
 }
 
