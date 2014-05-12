@@ -54,7 +54,11 @@
 		<table id="tabel_reservaties">
 
 			<tbody>
-				<div class="alert">Hier komen eventuele errors</div>
+				<?php 
+					if(isset($alert)){
+						echo "<div class='alert'>" . $alert . "</div>";
+					}
+				?>
 				<tr>
 					<th style="width: 20%;">Naam</th>
 					<th style="width: 3%;">Personen</th>

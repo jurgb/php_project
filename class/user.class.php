@@ -100,6 +100,19 @@ Developers: Jurgen barbier
 			}
 		}
 
+		public function Check($p_sInput)
+		{
+			$db = new Db();
+			$sql = "SELECT * from tbl_users where email ='". $p_sInput . "';";
+			$result = $db->conn->query($sql);
+			
+			
+			if($result->num_rows ==0)
+			{
+				return "free";
+			}
+		}
+
 		
 	}
 	

@@ -42,7 +42,11 @@ include_once("class/tafelindeling.class.php");
 	<section id="content">
 		<h1>Tafelindeling</h1>
 		<?php include('timer.include.php') ?>	
-		<div class="alert">Hier komen eventuele errors</div>
+		<?php 
+			if(isset($alert)){
+				echo "<div class='alert'>" . $alert . "</div>";
+			}
+		?>
 		<table>
 			<tbody id="tabel_tafels">
 				<tr>

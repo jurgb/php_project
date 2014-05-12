@@ -7,23 +7,31 @@
 
 	if(!empty($_POST))
 	{
-		if ($_POST['password'] == $_POST['repeatpassword']) {
-			try {
-				$u->Name = $_POST['name'];
-				$u->Firstname = $_POST['firstname'];
-				$u->Email = $_POST['email'];
-				$u->Password = $_POST['password'];
-				$u->Save();
+		$username = $_POST['email'];
+		if ($usernameavaileble = $u->Check($username) == "free") {
+			
+			if ($_POST['password'] == $_POST['repeatpassword']) {
+				try {
+					$u->Name = $_POST['name'];
+					$u->Firstname = $_POST['firstname'];
+					$u->Email = $_POST['email'];
+					$u->Password = $_POST['password'];
+					$u->Save();
 
-				header('Location: register_restaurant.php');
+					header('Location: register_restaurant.php');
 
-			} catch (Exception $e) {
-				$alert= $e->getMessage();
+				} catch (Exception $e) {
+					$alert= $e->getMessage();
+				}
+
+			} else
+			{
+				$alert = "passwords don't match!";
 			}
-
-		} else
+		}
+		else
 		{
-			$alert = "passwords don't match!";
+			$alert = "This e-mail adres is already taken";
 		}
 	}
 
@@ -56,10 +64,10 @@
 
 				<?php 
 					if(isset($alert)){
-						echo "<div id='alert'>" . $alert . "</div>";
+						echo "<div class='alert'>" . $alert . "</div>";
 					}
 				?>
-
+				<div id='alert' style="display: none;"></div>
 				<label for="name">Naam</label>
 				<input type="text" id="name" name="name">
 
@@ -81,5 +89,7 @@
 	</div><!--end formOuter-->
 	
 	<?php include_once('footer.include.php') ?>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/ajax_registratie.js"></script>
 </body>
 </html>
