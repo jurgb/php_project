@@ -44,7 +44,7 @@ include_once("class/tafelindeling.class.php");
 		<?php include('timer.include.php') ?>	
 		<div class="alert">Hier komen eventuele errors</div>
 		<table>
-			<tbody>
+			<tbody id="tabel_tafels">
 				<tr>
 					<th style="width: 10%;">Tafelnr</th>
 					<th>Max aantal personen</th>
@@ -56,8 +56,8 @@ include_once("class/tafelindeling.class.php");
 				
 				<tr id="inputs_toevoegen">
 					<form action="" method="post">
-					<td><input type="text" name="tafels"></td>
-					<td><input type="text"  name="personen"></td>
+					<td><input type="text" id="tafel_nr" name="tafels"></td>
+					<td><input type="text" id="tafel_personen"  name="personen"></td>
 					<th class="nopadding white"><button type="submit" class="save"></button></th>
 					</form>
 				</tr>
@@ -82,5 +82,6 @@ include_once("class/tafelindeling.class.php");
 		</table>
 	</section><!-- end content -->
 	<script src="js/script_backend.js"></script>
+	<script src="js/ajax_tafelindeling.js"></script>
 </body>
 </html>
