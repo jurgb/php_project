@@ -59,6 +59,7 @@
 						echo "<div class='alert'>" . $alert . "</div>";
 					}
 				?>
+				<div class='alert' style="display: none;"></div>
 				<tr>
 					<th style="width: 20%;">Naam</th>
 					<th style="width: 3%;">Personen</th>

@@ -98,6 +98,23 @@ Developers: Jurgen barbier
 			WHERE tafelnr = $id";
 			$db->conn->query($sql);
 		}
+
+		public function Check($p_sTafelnummer)
+		{
+			$db = new Db();
+			$sql = "SELECT * from tbl_tafels where tafelnr ='". $p_sTafelnummer . "';";
+			$result = $db->conn->query($sql);
+			
+			
+			if($result->num_rows ==0)
+			{
+				return "error";
+			}
+			else
+			{
+				return "exists";
+			}
+		}
 	
 	}
 	

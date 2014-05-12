@@ -20,9 +20,19 @@ $(document).ready(function(){
 				$("#reservatie_datum").val("");
 				$("#reservatie_uur").val("");
 				$("#reservatie_tafel").val("");
-	
-				var tr = "<tr><td>" + msg.reservaties[1] + "</td><td>" + msg.reservaties[2] + "</td><td>" + msg.reservaties[3] + "</td><td>" + msg.reservaties[4] + "</td><td>" + msg.reservaties[5] + "</td><th class='nopadding white'><a href='delete.php?type=reservatie&amp;id=" + msg.reservaties[0] + "'' class='delete' title='Verwijderen'>Verwijderen</a><a href='edit.php?type=reservatie&amp;id="+msg.reservaties[0] +"'' class='edit' title='Bewerken'>Bewerken</a></th></tr>";
-				$('#tabel_reservaties #inputs_toevoegen').after(tr);
+				
+				if(msg.error == "table doesnt exist")
+				{
+					$(".alert").html(msg.error);
+					$(".alert").css("display", "block");
+				}
+				else
+				{
+					var tr = "<tr><td>" + msg.reservaties[1] + "</td><td>" + msg.reservaties[2] + "</td><td>" + msg.reservaties[3] + "</td><td>" + msg.reservaties[4] + "</td><td>" + msg.reservaties[5] + "</td><th class='nopadding white'><a href='delete.php?type=reservatie&amp;id=" + msg.reservaties[0] + "'' class='delete' title='Verwijderen'>Verwijderen</a><a href='edit.php?type=reservatie&amp;id="+msg.reservaties[0] +"'' class='edit' title='Bewerken'>Bewerken</a></th></tr>";
+					$('#tabel_reservaties #inputs_toevoegen').after(tr);
+					$(".alert").css("display", "none");
+				}
+				
 				console.log(msg);
 
 				
