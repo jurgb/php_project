@@ -64,7 +64,7 @@
 
 				<?php 
 					if(isset($alert)){
-						echo "<div class='alert'>" . $alert . "</div>";
+						echo "<div id='alert'>" . $alert . "</div>";
 					}
 				?>
 				<div id='alert' style="display: none;"></div>

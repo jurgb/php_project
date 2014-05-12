@@ -8,7 +8,7 @@ include_once('class/restaurants.class.php');
 			if(isset($_POST['restaurant'])){
 					$_SESSION['restaurant_id'] = $_POST['restaurant'];
 			} else{
-				if(!empty($_POST))
+				if(!empty($_POST['restaurantopties']))
 				{
 					if(!empty($_POST['restaurantname'])){
 						$r = new Restaurant();
@@ -20,8 +20,12 @@ include_once('class/restaurants.class.php');
 						$r->Description = $_POST['restaurantdescription'];
 
 						$r->update();
-					} else{
+					} 
 
+				}
+				if (!empty($_POST['openingsuren'])) 
+				{
+				
 						$openuren = new Openingsuren;
 						$openuren->Maandag_opening_ochtend = $_POST['maandagopeno'];
 						$openuren->Maandag_sluiting_ochtend = $_POST['maandagsluito'];
@@ -59,8 +63,6 @@ include_once('class/restaurants.class.php');
 						$openuren->Zondag_sluiting_avond = $_POST['zondagsluita'];
 
 						$openuren->update();
-
-					}
 				}
 			}
 
@@ -115,7 +117,7 @@ include_once('class/restaurants.class.php');
 				<label for="restaurantdescription">Beschrijf uw restaurant</label>
 
 				<textarea rows="8" cols="30" id="restaurantdescription" name="restaurantdescription" ><?php echo $row['beschrijving']?></textarea>
-				<button type="submit">Opslaan</button>
+				<button type="submit" name="restaurantopties">Opslaan</button>
 				</form>
 		<?php }  ?>
 
@@ -190,7 +192,7 @@ include_once('class/restaurants.class.php');
 
 				
 
-			<button type="submit">Opslaan</button>
+			<button type="submit" name="openingsuren">Opslaan</button>
 
 		<?php }  ?>
 		</form>
