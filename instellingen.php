@@ -4,11 +4,15 @@
 include_once("class/openingsuren.class.php");
 include_once('class/restaurants.class.php');
 
+	if(!isset($_SESSION['loggedin']))
+	{
+		header('Location: login.php');
+	}
 	
 			if(isset($_POST['restaurant'])){
 					$_SESSION['restaurant_id'] = $_POST['restaurant'];
 			} else{
-				if(!empty($_POST['restaurantopties']))
+				if(!empty($_POST))
 				{
 					if(!empty($_POST['restaurantname'])){
 						$r = new Restaurant();
@@ -18,14 +22,13 @@ include_once('class/restaurants.class.php');
 						$r->City = $_POST['city'];
 						$r->Telnr = $_POST['tel'];
 						$r->Description = $_POST['restaurantdescription'];
-
+							$succes = "De gegevens werden succesvol opgeslagen";
 						$r->update();
-					} 
+					} else{
 
-				}
-				if (!empty($_POST['openingsuren'])) 
-				{
-				
+						if(!empty($_POST['maandagopeno'])){
+
+
 						$openuren = new Openingsuren;
 						$openuren->Maandag_opening_ochtend = $_POST['maandagopeno'];
 						$openuren->Maandag_sluiting_ochtend = $_POST['maandagsluito'];
@@ -61,8 +64,12 @@ include_once('class/restaurants.class.php');
 						$openuren->Zondag_sluiting_ochtend = $_POST['zondagsluito'];
 						$openuren->Zondag_opening_avond = $_POST['zondagopena'];
 						$openuren->Zondag_sluiting_avond = $_POST['zondagsluita'];
-
+								$succes = "De gegevens werden succesvol opgeslagen";
 						$openuren->update();
+						
+						}
+
+					}
 				}
 			}
 
@@ -84,7 +91,11 @@ include_once('class/restaurants.class.php');
 	<section id="content">
 		<h1>Instellingen</h1>
 		<?php include('timer.include.php') ?>
-		
+		<?php 
+			if(isset($succes)){
+				echo "<div id='succes'>" . $succes . "</div>";
+			}
+		?>
 		<div id="bgdashboard">
 
 		<?php	
@@ -198,7 +209,7 @@ include_once('class/restaurants.class.php');
 		</form>
 
 	</div>
-	<?php if (count($_POST)>0) echo "Form Submitted!"; ?>
+	
 	</section><!-- end content -->
 </body>
 </html>

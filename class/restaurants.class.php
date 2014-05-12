@@ -143,7 +143,7 @@ Developers: Jurgen barbier
 				telefoonnr = '".$db->conn->real_escape_string($this->m_sTelnr)."'
 			WHERE restaurant_id = '".$_SESSION['restaurant_id']."'";
 			$db->conn->query($sql);
-			echo "query is : " . "</br>" . $sql;
+			//echo "query is : " . "</br>" . $sql;
 		}
 	}
 	

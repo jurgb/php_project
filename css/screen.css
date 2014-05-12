@@ -340,6 +340,16 @@ input:focus, textarea:focus{
   margin: 7px 0 7px 145px;
   border-radius: 4px;
 }
+#succes{
+  font-size: 14px;
+  color: #ad3030;
+  background-color: #70BAA2;
+  border: 1px solid #d58585;
+  width: 280px;
+  padding: 10px;
+  margin: 7px 0 7px 145px;
+  border-radius: 4px;
+}
 
 button{
   padding: 15px 20px;

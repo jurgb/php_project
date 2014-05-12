@@ -49,6 +49,17 @@ img{
   background-repeat: no-repeat;
   float: left;
 }
+#succes{
+  font-size: 14px;
+  color: #fff;
+  background-color: #70BAA2;
+  border: 1px solid #fff;
+  width: 280px;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
 
 nav{
   clear: left;
